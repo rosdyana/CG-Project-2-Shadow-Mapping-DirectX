@@ -68,22 +68,23 @@ void DX10Renderer::SetShadowMapBias( float b )
 	shadowMapBias = b;
 }
 
-void DX10Renderer::SetlightPos(bool add)
+void DX10Renderer::SetlightPos(bool direction)
 {
-	double lightRotation;
-	if (add) 
+	//adjust the value for rotation
+	double lightDirection;
+
+	if ( direction )
 	{
-		lightRotation = 0.01f;
-
+		lightDirection = 0.01f;
 	}
-	else {
-		lightRotation = -0.01f;
-
+	else 
+	{
+		lightDirection = -0.01f;
 	}
 
 	//rotate light position
 	XMFLOAT3 yaxis(0, 1, 0), o(0, 0, 0), u(0, 1, 0);
-	XMMATRIX rotMatrix = XMMatrixRotationAxis(XMLoadFloat3(&yaxis), lightRotation);
+	XMMATRIX rotMatrix = XMMatrixRotationAxis(XMLoadFloat3(&yaxis), lightDirection);
 
 	//new rotated light pos
 	XMVECTOR olpos = XMLoadFloat3(&lightPos);
@@ -98,14 +99,4 @@ void DX10Renderer::SetlightPos(bool add)
 	XMMATRIX lpmat = XMLoadFloat4x4(&lightProjMatrix);
 	XMMATRIX lvpmat = XMMatrixMultiply(vmat, lpmat);
 	XMStoreFloat4x4(&lightViewProjMatrix, lvpmat);
-}
-
-void DX10Renderer::ShowBillboard(bool show)
-{
-	//render shadow map billboard
-	//***************************************************************************
-	pD3DDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_POINTLIST);
-
-	pBillboardTechnique->GetPassByIndex(0)->Apply(0);
-	pD3DDevice->DrawIndexed(1, 0, 0);
 }

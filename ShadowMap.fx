@@ -30,7 +30,7 @@ struct PS_INPUT
 {
 	float4 pos : SV_POSITION;
 	float4 wpos : TEXCOORD0;
-	float4 lpos : TEXCOORD1;		//vertex with regard to light view
+	float4 lpos : TEXCOORD1;
 	float3 normal : NORMAL;  
 };
 

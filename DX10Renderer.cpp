@@ -11,7 +11,6 @@ DX10Renderer::DX10Renderer() :	pD3DDevice(0),
 								pEffect(0),
 								pRenderShadowMapTechnique(0),
 								pRenderTechnique(0),								
-								pBillboardTechnique(0),
 								shadowMapBias(0)
 {
 }
@@ -50,9 +49,6 @@ bool DX10Renderer::Initialize(const HWND *pHWND)
 
 	
 	//Create the D3D device
-	//--------------------------------------------------------------
-	// put the d3d device into debug mode under debug profile
-	//--------------------------------------------------------------
 	UINT flags = 0;
 	#if defined(_DEBUG) | defined(DEBUG) 
 	flags |= D3D10_CREATE_DEVICE_DEBUG; 

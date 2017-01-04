@@ -1,11 +1,8 @@
 #ifndef _CAMERA
 #define _CAMERA
 
-//using XNA Math library
 #include <Windows.h>
 #include <Xnamath.h>
-
-//include HighRes Timer
 #include "HRTimer.h"
 
 inline void SetBit(unsigned int& bitField, unsigned int bit)
@@ -35,43 +32,32 @@ inline bool IsBitSet(unsigned int& bitField, unsigned int bit)
 
 class Camera
 {
-	//Members
-	//********************************************************************
 protected:
 
-	//flags bitfield
+
 	unsigned int flags;
 		
-	//camera position and matrix data
 	XMFLOAT3 position, viewVector, upVector;
 	XMFLOAT4X4 viewMatrix, projectionMatrix, viewProjectionMatrix;
 	
-	//free look variables
 	float heading, pitch, movementSpeed;
 	XMFLOAT3 dV, dU;
 
-	//camera timer
 	HRTimer timer;
 
-	//Methods
-	//********************************************************************
 public:
 		
 	Camera();
 
-	//positioning and movement methods	
 	void PositionCamera( const float camPosition[3], const float focusPoint[3], const float upDirection[3] );
 	void HandleInputMessage( unsigned int msg );
 	void AdjustOrientation(const float hRad, const float vRad);
 	void SetMovementSpeed( const float s );
-	
-	//virtual update method - controls camera movement
+
 	void Update();
-				
-	//projections
+
 	void SetPerspectiveProjectionLH( float FOVY, float aspectRatio, float zNear, float zFar );
-		
-	//get 
+
 	const XMFLOAT3& GetCameraPosition();
 	const XMFLOAT3& GetCameraUpVector();
 	const XMFLOAT3& GetCameraViewVector();

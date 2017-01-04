@@ -43,7 +43,6 @@ bool DX10Renderer::InitializeScene()
 	
 	pRenderTechnique = pEffect->GetTechniqueByName("RenderPassStandard");
 	pRenderShadowMapTechnique = pEffect->GetTechniqueByName("ShadowMapRenderPassFrontFaces");
-	pBillboardTechnique = pEffect->GetTechniqueByName("RenderBillboard");
 
 	//create input layout
 	D3D10_PASS_DESC passDesc;
@@ -65,6 +64,7 @@ bool DX10Renderer::InitializeScene()
 	//==================================================================
 	MeshData md;
 	
+	//load meshes
 	loadMeshDataFromOBJ("models\\floor.obj", &md);
 	meshes.push_back( DX10Mesh() );
 	meshes.back().CreateMesh(pD3DDevice, &md);

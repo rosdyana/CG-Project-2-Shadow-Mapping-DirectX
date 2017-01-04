@@ -36,7 +36,6 @@ class DX10Renderer
 	ID3D10Effect*							pEffect;
 	ID3D10EffectTechnique*					pRenderShadowMapTechnique;
 	ID3D10EffectTechnique*					pRenderTechnique;
-	ID3D10EffectTechnique*					pBillboardTechnique;
 
 	//shadow map resources
 	ID3D10Texture2D*						pShadowMap;
@@ -77,7 +76,6 @@ public:
 	void ToggleShadowMapSize();
 	void SetShadowMapBias( float b );
 	void SetlightPos(bool add);
-	void ShowBillboard(bool show);
 
 	//render scene frame
 	void RenderFrame();

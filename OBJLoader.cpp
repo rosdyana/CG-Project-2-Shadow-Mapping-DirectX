@@ -3,10 +3,8 @@
 #include <vector>
 using namespace std;
 
-//helper structs
 struct int9 { int a,b,c,d,e,f,g,h,i; };
 
-//helper functions
 inline void parseFloat3Line( char* buf, vector<float3>* pStorage )
 {
 	float3 v;		
@@ -28,7 +26,6 @@ inline void parseFaceLine( char* buf, vector<int9>* pStorage )
 													&v.d, &v.e, &v.f,
 													&v.g, &v.h, &v.i );
 
-	//correct indices to start at 0
 	for ( int i=0; i < 9; i++ ) ((int*) &v)[i]--;	
 	pStorage->push_back(v);
 }
@@ -48,7 +45,6 @@ inline void copyFloat2toFloatArray(float* pDest, float2 &rhs)
 
 bool loadMeshDataFromOBJ(const char* filename, MeshData* pMeshData)
 {
-	//create file handle
 	FILE* objFile;	
 	char path[255], buf[255];
 
@@ -64,7 +60,6 @@ bool loadMeshDataFromOBJ(const char* filename, MeshData* pMeshData)
 		}
 	}		
 		
-	//temporary data storage
 	vector<float3> vertices;
 	vector<float3> normals;
 	vector<float2> texcoords;
@@ -134,7 +129,6 @@ bool loadMeshDataFromOBJ(const char* filename, MeshData* pMeshData)
 	//create indices
 	for (unsigned int i=0; i< pMeshData->numIndices; i++ ) pMeshData->pIndices[i] = i;
 
-	//close file
 	fclose( objFile);	
 	return true;		
 }

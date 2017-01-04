@@ -5,29 +5,7 @@ extern Camera camera;
 
 //render frame
 void DX10Renderer::RenderFrame()
-{
-		
-	//rotate light - shouldnt do this each frame but i'm lazy
-	//***************************************************************************
-
-	////rotate light position
-	//XMFLOAT3 yaxis(0,1,0), o(0,0,0), u(0,1,0);
-	//XMMATRIX rotMatrix = XMMatrixRotationAxis( XMLoadFloat3(&yaxis), 0.01f);
-	//
-	////new rotated light pos
-	//XMVECTOR olpos = XMLoadFloat3(&lightPos);
-	//XMVECTOR lpos = XMVector3TransformCoord( olpos , rotMatrix);
-	//XMStoreFloat3(&lightPos, lpos);
-	//
-	////get new view matrix
-	//XMVECTOR fp = XMLoadFloat3( &o  ), up = XMLoadFloat3( &u );	 
-	//XMMATRIX vmat = XMMatrixLookAtLH( lpos, fp, up );
-	//
-	////create new light view proj matrix
-	//XMMATRIX lpmat = XMLoadFloat4x4(&lightProjMatrix);
-	//XMMATRIX lvpmat = XMMatrixMultiply(vmat, lpmat);
-	//XMStoreFloat4x4(&lightViewProjMatrix, lvpmat);
-		
+{	
 	//set per frame variables
 	//***************************************************************************
 	
@@ -102,10 +80,8 @@ void DX10Renderer::RenderFrame()
 		pRenderTechnique->GetPassByIndex(0)->Apply( 0 );	
 		pD3DDevice->DrawIndexed(meshes[scene[i].modelID].numIndices, 0, 0);
 	}
-	
-	//unbind shadow map as SRV
+
 	pEffect->GetVariableByName("shadowMap")->AsShaderResource()->SetResource( 0 );
-	pBillboardTechnique->GetPassByIndex(0)->Apply( 0 );
 
 	//swap buffers
 	pSwapChain->Present(0,0);

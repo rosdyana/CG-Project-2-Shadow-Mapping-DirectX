@@ -16,7 +16,6 @@ unsigned int shadowMapTechnique = 0;
 unsigned int currTech = 3;
 bool doubleSizedShadowMap = false;
 float smBias = 0.0005f;
-unsigned int showBillboard = 0;
 
 /*******************************************************************
 * Main Window Procedure - handles application events
@@ -62,10 +61,10 @@ LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 								case 'D' : 
 									camera.HandleInputMessage(3); 
 									break;
-								case 'N' :
+								case 190 :
 									renderer.SetlightPos(true);
 									break;
-								case 'M' :
+								case 188 :
 									renderer.SetlightPos(false);
 									break;
 								case 'T' : 
@@ -85,19 +84,6 @@ LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 									{
 										if ( ++shadowMapTechnique > 1 ) shadowMapTechnique = 0;
 										renderer.SetShadowMapTechnique( shadowMapTechnique );
-									}
-									break;
-								case 'B' :
-									{
-										if (showBillboard == 0) {
-												renderer.ShowBillboard(true);
-												showBillboard = 1;
-											}
-										else if (showBillboard == 1)
-										{
-											renderer.ShowBillboard(false);
-											showBillboard = 0;
-										}										
 									}
 									break;
 								case 107 :
@@ -256,7 +242,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	//show first frame and welcome message
 	renderer.RenderFrame();
 	MessageBox(	hWnd, 
-				L"T = Toggle Shadow Map Filtering\nY = Toggle Shadow Map Resolution\nU = Toggle Shadow Map Generation Method\n +/- = Adjust shadow map bias",
+				L"T = Toggle Shadow Map Filtering\nY = Toggle Shadow Map Resolution\nU = Toggle Shadow Map Generation Method\n +/- = Adjust shadow map bias\n</> = Rotate the light position",
 				L"Project 2 - Shadow Mapping", 
 				MB_ICONINFORMATION );
 
