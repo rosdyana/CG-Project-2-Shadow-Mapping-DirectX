@@ -42,7 +42,7 @@ bool DX10Renderer::InitializeScene()
 	if ( FAILED( D3DX10CreateEffectFromFile( L"ShadowMap.fx", 0, 0, (LPCSTR) "fx_4_0", D3D10_SHADER_ENABLE_STRICTNESS, 0, pD3DDevice, 0, 0, &pEffect, 0, 0) ) ) return false; 
 	
 	pRenderTechnique = pEffect->GetTechniqueByName("RenderPassStandard");
-	pRenderShadowMapTechnique = pEffect->GetTechniqueByName("ShadowMapRenderPassFrontFaces");
+	pRenderShadowMapTechnique = pEffect->GetTechniqueByName("ShadowMapRenderPassBackFaces");
 
 	//create input layout
 	D3D10_PASS_DESC passDesc;

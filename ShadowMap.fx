@@ -48,11 +48,13 @@ struct PS_INPUT2
 RasterizerState frontFaceCulling
 {
 	cullmode = front;
+	fillmode = solid;
 };
 
 RasterizerState backFaceCulling
 {
 	cullmode = back;
+	fillmode = solid;
 };
 
 //--------------------------------------------------------------------------------------
@@ -232,7 +234,7 @@ float4 PS_PCF2( PS_INPUT input ) : SV_Target
 	float sum = 0;
 	float x, y;	
 
-	//perform PCF filtering on a 4 x 4 texel neighborhood
+	//perform PCF on a 4 x 4 texel neighborhood
 	for (y = -1.5; y <= 1.5; y += 1.0)
 	{
 		for (x = -1.5; x <= 1.5; x += 1.0)
@@ -260,7 +262,7 @@ void ShadowMapPS( SHADOW_PS_INPUT input ) {}
 //--------------------------------------------------------------------------------------
 // Techniques
 //--------------------------------------------------------------------------------------
-technique10 ShadowMapRenderPassFrontFaces
+technique10 ShadowMapRenderPassBackFaces
 {
     pass P0
     {
@@ -271,7 +273,7 @@ technique10 ShadowMapRenderPassFrontFaces
     }
 }
 
-technique10 ShadowMapRenderPassBackFaces
+technique10 ShadowMapRenderPassFrontFaces
 {
     pass P0
     {

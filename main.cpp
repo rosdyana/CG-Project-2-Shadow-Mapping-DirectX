@@ -62,38 +62,44 @@ LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 									camera.HandleInputMessage(3); 
 									break;
 								case 190 :
+									//rotate clockwise
 									renderer.SetlightPos(true);
 									break;
 								case 188 :
+									//rotate counter-clockwise
 									renderer.SetlightPos(false);
 									break;
-								case 'T' : 
+								case 'F' : 
 									{
-										//toggle technique
+										//Toggle Shadow Map Filtering 
 										if ( ++currTech > 5 ) currTech = 3;
 										renderer.SetTechnique( currTech );
 									}
 									break;
-								case 'Y' :
+								case 'R' :
 									{
+										//Toggle Shadow Map Resolution
 										renderer.ToggleShadowMapSize();
 										doubleSizedShadowMap = !doubleSizedShadowMap;
 									}
 									break;
-								case 'U' :
+								case 'G' :
 									{
+										//Toggle Shadow Map Generation Method
 										if ( ++shadowMapTechnique > 1 ) shadowMapTechnique = 0;
 										renderer.SetShadowMapTechnique( shadowMapTechnique );
 									}
 									break;
 								case 107 :
 									{
+										//add more map bias
 										smBias += 0.0005f;
 										renderer.SetShadowMapBias(smBias);
 									}
 									break;
 								case 109 :
 									{
+										//reduce map bias
 										smBias -= 0.0005f;
 										renderer.SetShadowMapBias(smBias);
 									}
@@ -125,14 +131,14 @@ LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				//set window text
 				std::stringstream titleMsg;
 	
-				titleMsg << "Shadow Mapping :: ";
+				titleMsg << "Project 2 - Shadow Mapping :: ";
 				
 				if (shadowMapTechnique == 0 ) titleMsg << "Front Face SM, ";
 				else titleMsg << "Back Face SM, ";
 
 				if ( currTech == 2 ) titleMsg << "Point Sampling, ";
-				else if ( currTech == 3 ) titleMsg << "PCF 1-Tap, ";
-				else if ( currTech == 4 ) titleMsg << "PCF 16-Tap, ";
+				else if ( currTech == 3 ) titleMsg << "PCF-1, ";
+				else if ( currTech == 4 ) titleMsg << "PCF-16, ";
 
 				if ( !doubleSizedShadowMap ) titleMsg << "Shadow Map Size = 800x600, ";
 				else titleMsg << "Shadow Map Size = 1600*1200, ";
@@ -193,7 +199,7 @@ bool initWindow(HWND &hWnd, HINSTANCE hInstance, int width, int height)
 
 	//create the window from the class defined above	
 	hWnd = CreateWindow( TEXT("NMD"), 
-						 TEXT("Shadow Mapping :: Front Face SM, Point Sampling, Shadow Map Size = 800x600, Shadow Map Bias = 0.0005f"), 
+						 TEXT("Project 2"), 
 						 WS_OVERLAPPEDWINDOW,
 						 CW_USEDEFAULT, 
 						 CW_USEDEFAULT, 
@@ -242,7 +248,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	//show first frame and welcome message
 	renderer.RenderFrame();
 	MessageBox(	hWnd, 
-				L"T = Toggle Shadow Map Filtering\nY = Toggle Shadow Map Resolution\nU = Toggle Shadow Map Generation Method\n +/- = Adjust shadow map bias\n</> = Rotate the light position",
+				L"F = Toggle Shadow Map Filtering\nR = Toggle Shadow Map Resolution\nG = Toggle Shadow Map Generation Method\n +/- = Adjust shadow map bias\n</> = Rotate the light position",
 				L"Project 2 - Shadow Mapping", 
 				MB_ICONINFORMATION );
 
