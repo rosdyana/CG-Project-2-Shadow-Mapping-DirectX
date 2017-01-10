@@ -262,7 +262,7 @@ void ShadowMapPS( SHADOW_PS_INPUT input ) {}
 //--------------------------------------------------------------------------------------
 // Techniques
 //--------------------------------------------------------------------------------------
-technique10 ShadowMapRenderPassBackFaces
+technique10 ShadowMapRenderPassFrontFaces
 {
     pass P0
     {
@@ -273,7 +273,7 @@ technique10 ShadowMapRenderPassBackFaces
     }
 }
 
-technique10 ShadowMapRenderPassFrontFaces
+technique10 ShadowMapRenderPassBackFaces
 {
     pass P0
     {
