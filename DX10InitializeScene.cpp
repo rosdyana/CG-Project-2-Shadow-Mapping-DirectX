@@ -22,7 +22,7 @@ bool DX10Renderer::InitializeScene()
 	//set light params
 	//==================================================================
 
-	lightPos = XMFLOAT3(0.0f, 20.0f, -30.0f);
+	lightPos = XMFLOAT3(10.0f, 20.0f, -30.0f);
 
 	//light volume proj
 	//XMMATRIX pm = XMMatrixOrthographicLH(75, 75, 20.0f, 80.f);
@@ -69,7 +69,7 @@ bool DX10Renderer::InitializeScene()
 	meshes.push_back( DX10Mesh() );
 	meshes.back().CreateMesh(pD3DDevice, &md);
 	
-	loadMeshDataFromOBJ("models\\girl.obj", &md);
+	loadMeshDataFromOBJ("models\\crysis.obj", &md);
 	meshes.push_back( DX10Mesh() );
 	meshes.back().CreateMesh(pD3DDevice, &md);
 	
@@ -83,7 +83,7 @@ bool DX10Renderer::InitializeScene()
 	
 	//add 9 meshes to scene
 	float y = 0.0f;
-	XMFLOAT3 a(1,0,0);
+	XMFLOAT3 a(0,1,0);
 	XMVECTOR axis = XMLoadFloat3( &a);
 
 	for (float z = -10; z <= 10; z+=5)
